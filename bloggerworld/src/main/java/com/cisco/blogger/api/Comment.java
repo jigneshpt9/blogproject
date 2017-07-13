@@ -11,6 +11,14 @@ public class Comment {
 	private int dislikeCount;
 	List<Reply> replyList;
 
+	public String getCreatedTime() {
+		return createdTime;
+	}
+
+	public void setCreatedTime(String createdTime) {
+		this.createdTime = createdTime;
+	}
+
 	public int getCommentId() {
 		return commentId;
 	}
