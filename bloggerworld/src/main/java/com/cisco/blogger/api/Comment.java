@@ -5,6 +5,7 @@ import java.util.List;
 public class Comment {
 
 	private int commentId;
+	private String createdTime;
 	private String text;
 	private int likeCount;
 	private int dislikeCount;
