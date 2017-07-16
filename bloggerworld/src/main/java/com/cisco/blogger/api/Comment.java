@@ -2,8 +2,11 @@ package com.cisco.blogger.api;
 
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+@Entity
 public class Comment {
-
+	@Id
 	private int commentId;
 	private String createdTime;
 	private String text;
