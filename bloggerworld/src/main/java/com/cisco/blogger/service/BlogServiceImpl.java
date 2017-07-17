@@ -4,12 +4,19 @@ import java.util.List;
 
 import com.cisco.blogger.api.Blog;
 import com.cisco.blogger.api.Comment;
+import com.cisco.blogger.data.BlogDAO;
+import com.cisco.blogger.data.BlogDAOImpl;
 
 public class BlogServiceImpl implements BlogService {
 
+	BlogDAO blogDAO = new BlogDAOImpl();
+	
 	public int createBlog(Blog blog) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		int blogId = blogDAO.createBlog(blog);
+		
+		return blogId;
+		
 	}
 
 	public Blog updateBlog(Blog blog) {

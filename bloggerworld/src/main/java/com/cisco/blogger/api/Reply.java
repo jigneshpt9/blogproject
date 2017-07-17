@@ -1,7 +1,11 @@
 package com.cisco.blogger.api;
 
-public class Reply {
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
+@Entity
+public class Reply {
+	@Id
 	private int replyId;
 	private int replyText;
 

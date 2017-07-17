@@ -2,16 +2,27 @@ package com.cisco.blogger.api;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+@Entity
 public class Blog {
+	@Id
 	private int blogId;
 	private String title;
 	private String createTime;
 	private String lastUpdate;
 	private String content;
 	private int likeCount;
+	@ManyToOne(cascade = {CascadeType.ALL})
 	private User blogOwner;
-	List<Comment> comments;
-	List<Image> imageList;
+	@OneToMany(cascade = {CascadeType.ALL})
+	private List<Comment> comments;
+	@OneToMany(cascade = {CascadeType.ALL})
+	private List<Image> imageList;
 
 	public int getBlogId() {
 		return blogId;

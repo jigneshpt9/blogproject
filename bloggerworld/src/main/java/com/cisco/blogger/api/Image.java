@@ -1,7 +1,11 @@
 package com.cisco.blogger.api;
 
-public class Image {
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
+@Entity
+public class Image {
+	@Id
 	private int imageId;
 	private String imageLocation;
 

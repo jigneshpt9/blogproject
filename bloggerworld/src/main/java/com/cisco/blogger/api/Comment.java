@@ -2,8 +2,10 @@ package com.cisco.blogger.api;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 @Entity
 public class Comment {
 	@Id
@@ -12,6 +14,7 @@ public class Comment {
 	private String text;
 	private int likeCount;
 	private int dislikeCount;
+	@OneToMany(cascade= {CascadeType.ALL})
 	List<Reply> replyList;
 
 	public String getCreatedTime() {
