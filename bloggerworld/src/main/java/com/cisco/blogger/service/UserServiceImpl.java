@@ -19,8 +19,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	public void updateUser(User user) {
-		// TODO Auto-generated method stub
-		
+		userdao.updateUser(user);
 	}
 
 	public User validateUser(String emailId, String password) {

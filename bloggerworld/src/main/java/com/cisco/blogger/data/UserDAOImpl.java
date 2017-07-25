@@ -30,8 +30,9 @@ public class UserDAOImpl implements UserDAO {
 	}
 	
 	public void updateUser(User user) {
-		// TODO Auto-generated method stub
-		
+		em.getTransaction().begin();
+	    em.merge(user);
+	   	em.getTransaction().commit();
 	}
 
 	public User validateUser(String emailId, String password) {

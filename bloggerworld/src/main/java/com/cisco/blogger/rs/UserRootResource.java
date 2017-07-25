@@ -4,6 +4,7 @@ package com.cisco.blogger.rs;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -20,6 +21,7 @@ public class UserRootResource {
 	UserService userService = new UserServiceImpl();
 	
 	@POST
+	@Path("/register")
 	@Consumes({ MediaType.APPLICATION_JSON})
 	@Produces({ MediaType.APPLICATION_JSON})
 	
@@ -34,20 +36,20 @@ public class UserRootResource {
 		}
 	}
 	
-	/*@POST("/{emailId}")
+	@POST
+	@Path("/{emailId}")
 	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })	
-	public Response updateUser(String emailId) {
+	public Response updateUser(@PathParam("emailId") String emailId, User user ) {
 		try { 	
-		  if(ifUserExists(emailId))
-			  
+	      System.out.println("in updateuser");		  
 		  userService.updateUser(user);
 		  return Response.ok().entity(user).header("location", "/user" + user.getEmailId()).build();
 
 		} catch(UserException ue) {
 			return Response.status(500).build();
 		}
-	}*/
+	}
 	
 
 }
