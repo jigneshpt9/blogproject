@@ -38,8 +38,8 @@ public class UserRootResource {
 	
 	@POST
 	@Path("/{emailId}")
-	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })	
+	@Consumes({ MediaType.APPLICATION_JSON})
+	@Produces({ MediaType.APPLICATION_JSON})	
 	public Response updateUser(@PathParam("emailId") String emailId, User user ) {
 		try { 	
 	      System.out.println("in updateuser");		  
