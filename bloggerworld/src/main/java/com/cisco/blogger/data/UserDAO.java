@@ -4,9 +4,10 @@ import com.cisco.blogger.api.User;
 
 public interface UserDAO {
 
-	public User create(User user);
+	public void create(User user);
+	public User findUser(String emailId);
 
-	public User updateUser(User user);
+	public void updateUser(User user);
 
 	public User validateUser(String emailId, String password);
 

@@ -1,17 +1,37 @@
 package com.cisco.blogger.data;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
 import com.cisco.blogger.api.User;
 
 public class UserDAOImpl implements UserDAO {
 
-	public User create(User user) {
-		// TODO Auto-generated method stub
-		return null;
+	static  EntityManager em;
+	
+	public UserDAOImpl() {
+		if(null == em) {
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("blogger");
+		em = factory.createEntityManager();
+		}
+	}
+				
+	public void create(User user) {
+		em.getTransaction().begin();
+		em.persist(user);
+		em.getTransaction().commit();
+		System.out.println("User registered");
 	}
 
-	public User updateUser(User user) {
+	public User findUser(String emailId){
+		User result = (User) em.find(User.class,emailId);
+		return result;
+	}
+	
+	public void updateUser(User user) {
 		// TODO Auto-generated method stub
-		return null;
+		
 	}
 
 	public User validateUser(String emailId, String password) {
@@ -19,4 +39,5 @@ public class UserDAOImpl implements UserDAO {
 		return null;
 	}
 
+	
 }
