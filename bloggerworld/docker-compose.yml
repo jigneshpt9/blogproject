@@ -1,5 +1,5 @@
 app:
-  image: jigneshpt/blogger
+  image: jigneshpt/blogger:1
   links:
    - db:db
   ports:
