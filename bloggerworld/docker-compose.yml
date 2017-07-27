@@ -11,4 +11,3 @@ db:
     - MYSQL_ROOT_PASSWORD=password
   volumes:
     - /var/lib/mysql
-~
