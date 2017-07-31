@@ -35,4 +35,9 @@ public class UserServiceImpl implements UserService {
 		}  
 		return false;
 	}
+
+	@Override
+	public User findUser(String emailId) {
+		return userdao.findUser(emailId);
+	}
 }
