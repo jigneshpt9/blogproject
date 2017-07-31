@@ -1,5 +1,5 @@
 app:
-  image: "jigneshpt/blogger:${IMAGE_TAG}"
+  image: jigneshpt/blogger:latest
   links:
    - db:db
   ports:
