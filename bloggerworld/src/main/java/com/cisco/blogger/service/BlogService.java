@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.cisco.blogger.api.Blog;
 import com.cisco.blogger.api.Comment;
+import com.cisco.blogger.api.Reply;
 
 public interface BlogService {
 	
@@ -22,5 +23,7 @@ public interface BlogService {
 	public int upvoteComment(int commentId);
 	
 	public int undoLikeComment(int commentId);
+	
+	public void replyOnComment(int commentId, Reply reply);
 
 }

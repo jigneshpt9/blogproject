@@ -4,19 +4,20 @@ import java.util.List;
 
 import com.cisco.blogger.api.Blog;
 import com.cisco.blogger.api.Comment;
+import com.cisco.blogger.api.Reply;
 import com.cisco.blogger.data.BlogDAO;
 import com.cisco.blogger.data.BlogDAOImpl;
 
 public class BlogServiceImpl implements BlogService {
 
 	BlogDAO blogDAO = new BlogDAOImpl();
-	
+
 	public int createBlog(Blog blog) {
-		
+
 		int blogId = blogDAO.createBlog(blog);
-		
+
 		return blogId;
-		
+
 	}
 
 	public Blog updateBlog(Blog blog) {
@@ -33,13 +34,14 @@ public class BlogServiceImpl implements BlogService {
 	}
 
 	public List<Blog> listAllBlogs() {
-		
+
 		return blogDAO.listAllBlogs();
 	}
 
 	public void addComment(int blogId, Comment comment) {
-		// TODO Auto-generated method stub
-		
+
+		blogDAO.addComment(blogId, comment);
+
 	}
 
 	public int upvoteComment(int commentId) {
@@ -50,6 +52,13 @@ public class BlogServiceImpl implements BlogService {
 	public int undoLikeComment(int commentId) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public void replyOnComment(int commentId, Reply reply) {
+		blogDAO.replyOnComment(commentId, reply);
+		
+		
 	}
 
 }

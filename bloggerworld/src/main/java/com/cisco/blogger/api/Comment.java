@@ -4,10 +4,16 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 @Entity
 public class Comment {
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Id
 	private int commentId;
 	private String createdTime;
@@ -16,6 +22,10 @@ public class Comment {
 	private int dislikeCount;
 	@OneToMany(cascade= {CascadeType.ALL})
 	List<Reply> replyList;
+	
+	@ManyToOne
+	@JoinColumn(name="blogId")
+	private Blog blog;
 
 	public String getCreatedTime() {
 		return createdTime;
