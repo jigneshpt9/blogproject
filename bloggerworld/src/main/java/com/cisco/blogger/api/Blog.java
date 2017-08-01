@@ -4,12 +4,15 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
 public class Blog {
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Id
 	private int blogId;
 	private String title;
@@ -17,7 +20,7 @@ public class Blog {
 	private String lastUpdate;
 	private String content;
 	private int likeCount;
-	@ManyToOne(cascade = {CascadeType.ALL})
+	@ManyToOne(cascade = {CascadeType.MERGE})
 	private User blogOwner;
 	@OneToMany(cascade = {CascadeType.ALL})
 	private List<Comment> comments;

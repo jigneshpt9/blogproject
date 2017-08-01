@@ -20,23 +20,21 @@ public class BlogServiceImpl implements BlogService {
 	}
 
 	public Blog updateBlog(Blog blog) {
-		// TODO Auto-generated method stub
-		return null;
+		Blog updatedBlog = blogDAO.updateBlog(blog);
+		return updatedBlog;
 	}
 
 	public List<Blog> searchBlogs(String keyword) {
-		// TODO Auto-generated method stub
-		return null;
+		return blogDAO.searchBlogs(keyword);
 	}
 
 	public Blog viewBlog(int blogId) {
-		// TODO Auto-generated method stub
-		return null;
+		return blogDAO.viewBlog(blogId);
 	}
 
 	public List<Blog> listAllBlogs() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return blogDAO.listAllBlogs();
 	}
 
 	public void addComment(int blogId, Comment comment) {

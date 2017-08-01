@@ -11,4 +11,8 @@ public interface UserService {
 	public User validateUser(String emailId, String password);
 	
 	public boolean ifUserExists(String emaildId);
+	
+	public User findUser(String emailId);
+	
+	
 }

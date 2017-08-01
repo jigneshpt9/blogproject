@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 import com.cisco.blogger.api.Blog;
 import com.cisco.blogger.api.Comment;
@@ -23,34 +24,52 @@ public class BlogDAOImpl implements BlogDAO {
 	}
 
 	public int createBlog(Blog blog) {
-		
+
 		em.getTransaction().begin();
 		em.persist(blog);
 		em.getTransaction().commit();
-		System.out.println("BlogAdded-"+blog.getBlogId());
-		
+		System.out.println("BlogAdded-" + blog.getBlogId());
+
 		return blog.getBlogId();
-		
+
 	}
 
 	public Blog updateBlog(Blog blog) {
-		// TODO Auto-generated method stub
-		return null;
+
+		em.getTransaction().begin();
+		em.merge(blog);
+		em.getTransaction().commit();
+		System.out.println("BlogUpdated-" + blog.getBlogId());
+		return blog;
 	}
 
 	public List<Blog> searchBlogs(String keyword) {
-		// TODO Auto-generated method stub
-		return null;
+		System.out.println("In search method for keyword:"+keyword);
+		List<Blog> blogSearchList = null;
+
+		Query searchQuery = em
+				.createQuery("SELECT b FROM Blog b WHERE (b.title LIKE :keyword OR b.content LIKE :keyword)");
+		searchQuery.setParameter("keyword","%"+keyword+"%");
+		
+		blogSearchList = searchQuery.getResultList();
+		
+		return blogSearchList;
 	}
 
 	public Blog viewBlog(int blogId) {
-		// TODO Auto-generated method stub
-		return null;
+		Blog blogSearch = em.find(Blog.class, blogId);
+
+		return blogSearch;
 	}
 
 	public List<Blog> listAllBlogs() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Blog> blogList = em.createQuery("SELECT b FROM Blog b").getResultList();
+
+		if (null != blogList && !blogList.isEmpty()) {
+			return blogList;
+		} else {
+			return null;
+		}
 	}
 
 	public void addComment(int blogId, Comment comment) {

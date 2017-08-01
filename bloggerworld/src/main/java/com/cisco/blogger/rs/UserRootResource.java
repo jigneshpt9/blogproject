@@ -21,10 +21,8 @@ public class UserRootResource {
 	UserService userService = new UserServiceImpl();
 	
 	@POST
-	@Path("/register")
 	@Consumes({ MediaType.APPLICATION_JSON})
 	@Produces({ MediaType.APPLICATION_JSON})
-	
 	public Response addUser(User user) {
 		try { 	
 			System.out.println("in addUser");
