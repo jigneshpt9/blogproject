@@ -2,6 +2,7 @@ package com.cisco.blogger.rs;
 
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -49,6 +50,24 @@ public class UserRootResource {
 		}
 	}
 	
+	@GET
+	@Path("/{emailId}/login")
+	@Consumes({ MediaType.APPLICATION_JSON})
+	@Produces({ MediaType.APPLICATION_JSON})	
+	public Response userlogin(@PathParam("emailId") String emailId) {
+		 	
+	      System.out.println("in userlogin");		  
+		  User user =  userService.findUser(emailId);
+		  //TBD for password authentication
+		  
+		  if (user == null)
+			  return Response.status(500).build();
+		  else 
+			  return Response.status(201).entity(user).header("location", "/user" + user.getEmailId()).build();
+		 
+		  
+		
+	}
 
 }
 
