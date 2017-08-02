@@ -9,6 +9,7 @@ import javax.persistence.Query;
 
 import com.cisco.blogger.api.Blog;
 import com.cisco.blogger.api.Comment;
+import com.cisco.blogger.api.Reply;
 
 public class BlogDAOImpl implements BlogDAO {
 
@@ -73,8 +74,12 @@ public class BlogDAOImpl implements BlogDAO {
 	}
 
 	public void addComment(int blogId, Comment comment) {
-		// TODO Auto-generated method stub
-
+		Blog blog= viewBlog(blogId);
+		List<Comment> comments = blog.getComments();
+		comments.add(comment);
+		updateBlog(blog);
+		
+		
 	}
 
 	public int upvoteComment(int commentId) {
@@ -85,6 +90,18 @@ public class BlogDAOImpl implements BlogDAO {
 	public int undoLikeComment(int commentId) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public void replyOnComment(int commentId, Reply reply) {
+		Comment comment = em.find(Comment.class, commentId);
+		comment.getReplyList().add(reply);
+		
+		em.getTransaction().begin();
+		em.merge(comment);
+		em.getTransaction().commit();
+		
+
 	}
 
 }

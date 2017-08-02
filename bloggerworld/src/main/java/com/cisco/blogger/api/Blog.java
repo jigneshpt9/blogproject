@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,7 +23,7 @@ public class Blog {
 	private int likeCount;
 	@ManyToOne(cascade = {CascadeType.MERGE})
 	private User blogOwner;
-	@OneToMany(cascade = {CascadeType.ALL})
+	@OneToMany(cascade = {CascadeType.ALL},fetch =FetchType.EAGER, mappedBy="blog")
 	private List<Comment> comments;
 	@OneToMany(cascade = {CascadeType.ALL})
 	private List<Image> imageList;
