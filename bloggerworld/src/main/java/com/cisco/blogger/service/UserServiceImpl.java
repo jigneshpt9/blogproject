@@ -23,7 +23,13 @@ public class UserServiceImpl implements UserService {
 	}
 
 	public User validateUser(String emailId, String password) {
-		// TODO Auto-generated method stub
+		System.out.println("in validate user");
+		 User user = userdao.findUser(emailId);
+		System.out.println(password +" "+user.getPassword());
+		 if (password.equals(user.getPassword())){
+			 System.out.println("matched");
+			 return user;
+		 }
 		return null;
 	}
 

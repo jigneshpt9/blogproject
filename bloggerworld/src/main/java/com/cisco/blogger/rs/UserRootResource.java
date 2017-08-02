@@ -4,6 +4,7 @@ package com.cisco.blogger.rs;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -34,7 +35,32 @@ public class UserRootResource {
 			return Response.status(500).build();
 		}
 	}
-	
+
+	@GET
+	@Path("/{emailId}/login/{key}")
+	@Consumes({ MediaType.APPLICATION_JSON})
+	@Produces({ MediaType.APPLICATION_JSON})	
+	public Response userlogin(@PathParam("emailId") String emailId, @PathParam("key") String key) {
+		 	
+	      System.out.println("in userlogin");		  
+		  User user =  userService.findUser(emailId);
+		  //TBD for password authentication
+		  
+		  if (user == null)
+			  return Response.status(404).build();
+		  else {
+			    user = userService.validateUser(emailId, key);
+			    if (user != null ){
+			        return Response.status(201).entity(user).header("location", "/user" + user.getEmailId()).build();
+			    }
+			    else
+			    {
+				     return Response.status(401).build();
+			    }
+		  }	
+	}
+
+		
 	@POST
 	@Path("/{emailId}")
 	@Consumes({ MediaType.APPLICATION_JSON})
@@ -50,24 +76,6 @@ public class UserRootResource {
 		}
 	}
 	
-	@GET
-	@Path("/{emailId}/login")
-	@Consumes({ MediaType.APPLICATION_JSON})
-	@Produces({ MediaType.APPLICATION_JSON})	
-	public Response userlogin(@PathParam("emailId") String emailId) {
-		 	
-	      System.out.println("in userlogin");		  
-		  User user =  userService.findUser(emailId);
-		  //TBD for password authentication
-		  
-		  if (user == null)
-			  return Response.status(500).build();
-		  else 
-			  return Response.status(201).entity(user).header("location", "/user" + user.getEmailId()).build();
-		 
-		  
-		
-	}
 
 }
 
