@@ -7,7 +7,6 @@ import com.cisco.blogger.data.UserDAOImpl;
 public class UserServiceImpl implements UserService {
 
     UserDAO userdao = new UserDAOImpl();
-
 	public void registerUser(User user) {
 		System.out.println("in registerUser entry");
 		if (ifUserExists(user.getEmailId())){

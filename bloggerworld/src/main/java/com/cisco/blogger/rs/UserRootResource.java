@@ -41,7 +41,6 @@ public class UserRootResource {
 	@Consumes({ MediaType.APPLICATION_JSON})
 	@Produces({ MediaType.APPLICATION_JSON})	
 	public Response userlogin(@PathParam("emailId") String emailId, @PathParam("key") String key) {
-		 	
 	      System.out.println("in userlogin");		  
 		  User user =  userService.findUser(emailId);
 		  //TBD for password authentication
