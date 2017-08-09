@@ -1,5 +1,6 @@
 package com.cisco.blogger.data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -45,15 +46,15 @@ public class BlogDAOImpl implements BlogDAO {
 	}
 
 	public List<Blog> searchBlogs(String keyword) {
-		System.out.println("In search method for keyword:"+keyword);
+		System.out.println("In search method for keyword:" + keyword);
 		List<Blog> blogSearchList = null;
 
 		Query searchQuery = em
 				.createQuery("SELECT b FROM Blog b WHERE (b.title LIKE :keyword OR b.content LIKE :keyword)");
-		searchQuery.setParameter("keyword","%"+keyword+"%");
-		
+		searchQuery.setParameter("keyword", "%" + keyword + "%");
+
 		blogSearchList = searchQuery.getResultList();
-		
+
 		return blogSearchList;
 	}
 
@@ -74,12 +75,12 @@ public class BlogDAOImpl implements BlogDAO {
 	}
 
 	public void addComment(int blogId, Comment comment) {
-		Blog blog= viewBlog(blogId);
+		Blog blog = viewBlog(blogId);
 		List<Comment> comments = blog.getComments();
+
 		comments.add(comment);
 		updateBlog(blog);
-		
-		
+
 	}
 
 	public int upvoteComment(int commentId) {
@@ -96,11 +97,10 @@ public class BlogDAOImpl implements BlogDAO {
 	public void replyOnComment(int commentId, Reply reply) {
 		Comment comment = em.find(Comment.class, commentId);
 		comment.getReplyList().add(reply);
-		
+
 		em.getTransaction().begin();
 		em.merge(comment);
 		em.getTransaction().commit();
-		
 
 	}
 
