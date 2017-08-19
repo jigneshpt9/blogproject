@@ -1,6 +1,6 @@
 
 FROM tomcat
 WORKDIR /usr/local/tomcat
-COPY . webapps
+COPY bloggerworld/target/*.war webapps
 CMD catalina.sh run
 
