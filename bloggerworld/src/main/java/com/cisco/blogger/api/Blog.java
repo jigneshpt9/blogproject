@@ -1,5 +1,6 @@
 package com.cisco.blogger.api;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -13,7 +14,7 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class Blog {
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Id
 	private int blogId;
 	private String title;
@@ -21,11 +22,11 @@ public class Blog {
 	private String lastUpdate;
 	private String content;
 	private int likeCount;
-	@ManyToOne(cascade = {CascadeType.MERGE})
+	@ManyToOne(cascade = { CascadeType.MERGE })
 	private User blogOwner;
-	@OneToMany(cascade = {CascadeType.ALL},fetch =FetchType.EAGER, mappedBy="blog")
+	@OneToMany(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER, mappedBy = "blog")
 	private List<Comment> comments;
-	@OneToMany(cascade = {CascadeType.ALL})
+	@OneToMany(cascade = { CascadeType.ALL })
 	private List<Image> imageList;
 
 	public int getBlogId() {
@@ -85,7 +86,10 @@ public class Blog {
 	}
 
 	public List<Comment> getComments() {
-		return comments;
+		if (null != comments)
+			return comments;
+		else
+			return new ArrayList<Comment>();
 	}
 
 	public void setComments(List<Comment> comments) {
