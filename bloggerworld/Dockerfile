@@ -1,5 +1,5 @@
 
 FROM tomcat
 WORKDIR /usr/local/tomcat
-COPY *.war webapps
+COPY /var/jenkins_home/workspace/Package/bloggerworld/target/bloggerworld.war  webapps
 CMD catalina.sh run
