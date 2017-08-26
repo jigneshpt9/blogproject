@@ -2,11 +2,11 @@ package com.cisco.blogger.service;
 import com.cisco.blogger.api.DuplicateUserException;
 import com.cisco.blogger.api.User;
 import com.cisco.blogger.data.UserDAO;
-import com.cisco.blogger.data.UserDAOImpl;
+import com.cisco.blogger.data.UserDAOImpl_mongo;
 
 public class UserServiceImpl implements UserService {
 
-    UserDAO userdao = new UserDAOImpl();
+    UserDAO userdao = new UserDAOImpl_mongo();
 	public void registerUser(User user) {
 		System.out.println("in registerUser entry");
 		if (ifUserExists(user.getEmailId())){
