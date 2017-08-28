@@ -2,6 +2,7 @@ package com.cisco.blogger.data;
 
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Morphia;
+import org.mongodb.morphia.query.Query;
 
 import com.cisco.blogger.api.User;
 import com.mongodb.Mongo;
@@ -26,8 +27,11 @@ public class UserDAOImpl_mongo implements UserDAO {
 	}
 
 	public User findUser(String emailId){
-		//User result = (User) em.find(User.class,emailId);
-		return null;
+
+		Query<User> userQueryDS = datastore.createQuery(User.class);
+		userQueryDS.field("emailId").equal(emailId);
+		User foundUser = userQueryDS.get();
+		return foundUser;
 	}
 	
 	public void updateUser(User user) {
