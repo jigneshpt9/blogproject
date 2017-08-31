@@ -11,7 +11,7 @@ import com.mongodb.MongoClient;
 public class UserDAOImpl_mongo implements UserDAO {
 
 	 static String dbName = new String("bloggerDb");    
-	 static MongoClient mongo = new MongoClient("172.17.0.3");
+	 static MongoClient mongo = new MongoClient("172.31.34.32");
      static Morphia morphia = new Morphia();
      static Datastore datastore = morphia.createDatastore( mongo, dbName); 	     
 	
@@ -35,7 +35,7 @@ public class UserDAOImpl_mongo implements UserDAO {
 	}
 	
 	public void updateUser(User user) {
-		//em.getTransaction().begin();
+		  datastore.save(user);
 	    //em.merge(user);
 	   	//em.getTransaction().commit();
 	}
