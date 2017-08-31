@@ -4,7 +4,7 @@
 	<groupId>com.cisco</groupId>
 	<artifactId>blogger</artifactId>
 	<packaging>war</packaging>
-	<version>1.0.0-REL</version>
+	<version>1</version>
 	<name>cmad-jaxrs Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 	<dependencies>
